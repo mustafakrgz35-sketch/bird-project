@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<header class="hero">
+    <div class="hero-content">
+        <h1>Discover Centrala's Wings</h1>
+        <p>Join us to protect nature and track the bird population. Share your sightings, contribute to science, and explore the biodiversity of our city.</p>
+        
+        <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+            <a href="/add-post" class="cta-button">📷 Add Observation</a>
+            <a href="/board" class="cta-button secondary-btn">View Sightings</a>
+        <% } else { %>
+            <a href="/register" class="cta-button">🚀 Join Us Now</a>
+            <a href="/login" class="cta-button secondary-btn">Login</a>
+        <% } %>
+    </div>
+</header>
+
+<section class="features">
+    <div class="feature-card">
+        <span class="feature-icon">📸</span>
+        <h3>Snap & Share</h3>
+        <p>Photograph birds you see in the city or nature. Save them to our database with location and species details.</p>
+    </div>
+
+    <div class="feature-card">
+        <span class="feature-icon">🔍</span>
+        <h3>Discover Species</h3>
+        <p>See what other observers have found on the message board. Search by region and species.</p>
+    </div>
+
+    <div class="feature-card">
+        <span class="feature-icon">🌍</span>
+        <h3>Contribute to Science</h3>
+        <p>The data we collect is used by the Centrala Environmental Agency (CEA) for urban planning.</p>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

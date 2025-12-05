@@ -1,0 +1,65 @@
+<%- include('partials/header') %>
+
+<div class="form-container" style="max-width: 600px; margin: auto;">
+    <h2>Edit Observation</h2>
+    
+    <form action="/edit/<%= post._id %>" method="POST" enctype="multipart/form-data">
+        
+        <label>Region (Current: <%= post.location %>):</label>
+        <select name="location">
+            <option value="<%= post.location %>" selected><%= post.location %></option>
+            <option value="Erean">Erean</option>
+            <option value="Brunad">Brunad</option>
+            <option value="Bylyn">Bylyn</option>
+            <option value="Docia">Docia</option>
+            <option value="Marend">Marend</option>
+            <option value="Pryn">Pryn</option>
+            <option value="Zord">Zord</option>
+            <option value="Yaean">Yaean</option>
+            <option value="Frestin">Frestin</option>
+            <option value="Stonyam">Stonyam</option>
+            <option value="Ryall">Ryall</option>
+            <option value="Ruril">Ruril</option>
+            <option value="Keivia">Keivia</option>
+            <option value="Tallan">Tallan</option>
+            <option value="Adohad">Adohad</option>
+            <option value="Obelyn">Obelyn</option>
+            <option value="Holmer">Holmer</option>
+            <option value="Vertwall">Vertwall</option>
+        </select>
+
+        <label>Bird Species (Current: <%= post.bird %>):</label>
+        <select name="bird">
+            <option value="<%= post.bird %>" selected><%= post.bird %></option>
+            <option value="Wood Pigeon">Wood Pigeon</option>
+            <option value="House Sparrow">House Sparrow</option>
+            <option value="Starling">Starling</option>
+            <option value="Blue Tit">Blue Tit</option>
+            <option value="Blackbird">Blackbird</option>
+            <option value="Robin">Robin</option>
+            <option value="Goldfinch">Goldfinch</option>
+            <option value="Magpie">Magpie</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label>Date:</label>
+        <input type="date" name="date" value="<%= post.date %>" required>
+
+        <label>Time:</label>
+        <input type="time" name="time" value="<%= post.time %>" required>
+
+        <label>Duration (Minutes):</label>
+        <input type="number" name="duration" value="<%= post.duration %>" required>
+
+        <label>New Photo (Optional):</label>
+        <input type="file" name="image" accept=".jpg,.jpeg,.png">
+        <small style="color: #666;">Leave blank to keep the current photo.</small>
+
+        <label>Description:</label>
+        <textarea name="description" rows="4"><%= post.description %></textarea>
+
+        <button type="submit" style="margin-top: 20px; width: 100%; background: #f39c12;">Save Changes</button>
+    </form>
+</div>
+
+<%- include('partials/footer') %>

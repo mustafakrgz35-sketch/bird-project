@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centrala Bird Tracker (CTO)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">🕊️ CTO Bird Tracker</a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/board">Message Board</a></li>
+                
+                <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+                    <li><a href="/add-post" class="nav-btn add-btn">➕ Add Observation</a></li>
+                    <li><a href="/logout" class="nav-btn logout-btn">Logout (<%= currentUser.username %>)</a></li>
+                <% } else { %>
+                    <li><a href="/register" class="nav-link">Register</a></li>
+                    <li><a href="/login" class="nav-btn login-btn">Login</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+    <div class="main-content">

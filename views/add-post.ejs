@@ -1,0 +1,102 @@
+<%- include('partials/header') %>
+
+<div class="form-container" style="max-width: 600px; margin: auto;">
+    <h2>Add New Bird Observation</h2>
+    
+    <form action="/add-post" method="POST" enctype="multipart/form-data">
+        
+        <label>Select Region:</label>
+        <select name="location" required>
+            <option value="">Select...</option>
+            <option value="Erean">Erean</option>
+            <option value="Brunad">Brunad</option>
+            <option value="Bylyn">Bylyn</option>
+            <option value="Docia">Docia</option>
+            <option value="Marend">Marend</option>
+            <option value="Pryn">Pryn</option>
+            <option value="Zord">Zord</option>
+            <option value="Yaean">Yaean</option>
+            <option value="Frestin">Frestin</option>
+            <option value="Stonyam">Stonyam</option>
+            <option value="Ryall">Ryall</option>
+            <option value="Ruril">Ruril</option>
+            <option value="Keivia">Keivia</option>
+            <option value="Tallan">Tallan</option>
+            <option value="Adohad">Adohad</option>
+            <option value="Obelyn">Obelyn</option>
+            <option value="Holmer">Holmer</option>
+            <option value="Vertwall">Vertwall</option>
+        </select>
+
+        <label>Bird Species:</label>
+        <select name="bird" required>
+            <option value="">Select...</option>
+            <option value="Wood Pigeon">Wood Pigeon</option>
+            <option value="House Sparrow">House Sparrow</option>
+            <option value="Starling">Starling</option>
+            <option value="Blue Tit">Blue Tit</option>
+            <option value="Blackbird">Blackbird</option>
+            <option value="Robin">Robin</option>
+            <option value="Goldfinch">Goldfinch</option>
+            <option value="Magpie">Magpie</option>
+            <option value="Other">Other / Unknown</option>
+        </select>
+
+        <label>Activity:</label>
+        <select name="activity" required>
+            <option value="Feeding">Feeding</option>
+            <option value="Nesting">Nesting</option>
+            <option value="Flying">Flying</option>
+            <option value="Perching">Perching</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label>Date:</label>
+        <input type="date" name="date" required>
+
+        <label>Time:</label>
+        <input type="time" name="time" required>
+
+        <label>Duration (Minutes):</label>
+        <input type="number" name="duration" placeholder="e.g. 15" required>
+
+        <label>Photo (Max 1.2MB):</label>
+        <input type="file" name="image" id="imageInput" accept=".jpg,.jpeg,.png">
+        
+        <div style="margin-top: 15px; text-align: center;">
+            <img id="imagePreview" src="#" alt="Photo Preview" 
+                 style="display: none; max-width: 100%; height: auto; max-height: 300px; border-radius: 8px; border: 2px solid #ddd; padding: 5px; margin: 0 auto;">
+        </div>
+
+        <label>Description / Notes:</label>
+        <textarea name="description" rows="4"></textarea>
+
+        <button type="submit" style="margin-top: 20px; width: 100%;">Save Observation</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const input = document.getElementById('imageInput');
+        const preview = document.getElementById('imagePreview');
+
+        if (input && preview) {
+            input.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = "block";
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.style.display = "none";
+                    preview.src = "";
+                }
+            });
+        }
+    });
+</script>
+
+<%- include('partials/footer') %>

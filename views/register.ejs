@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+<div class="form-container">
+    <h2>Register</h2>
+    <p style="text-align: center;">Join the bird watching community.</p>
+    <form action="/register" method="POST">
+        <label>Username:</label>
+        <input type="text" name="username" required>
+        <label>Password:</label>
+        <input type="password" name="password" required>
+        <button type="submit">Sign Up</button>
+    </form>
+    <p style="text-align: center; margin-top: 10px;">Already have an account? <a href="/login" style="color: #27ae60;">Login here</a></p>
+</div>
+<%- include('partials/footer') %>

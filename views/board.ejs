@@ -1,0 +1,63 @@
+<%- include('partials/header') %>
+
+<div class="board-container" style="max-width: 1000px; margin: auto;">
+    
+    <h2 style="text-align: center; margin-bottom: 20px;">
+        <% if (currentUser.isAdmin) { %>
+            👑 Admin Panel (All Sightings)
+        <% } else { %>
+            📂 My Observation Log
+        <% } %>
+    </h2>
+
+    <div class="search-container">
+        <form action="/board" method="GET" class="search-form">
+            <input type="text" name="search" class="search-input" placeholder="Search bird species (e.g. Robin)...">
+            <button type="submit" class="search-btn">🔍 Search</button>
+            <a href="/board" class="reset-btn">❌ Reset</a>
+        </form>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 30px;">
+        <a href="/add-post" style="background-color: #27ae60; color: white; padding: 15px 30px; text-decoration: none; font-size: 1.2em; border-radius: 5px; display: inline-block;">
+            📷 Share New Sighting
+        </a>
+    </div>
+
+    <div class="posts-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+        
+        <% if (posts.length === 0) { %>
+            <p style="text-align: center; grid-column: 1/-1;">No observations found. Be the first to share!</p>
+        <% } %>
+
+        <% posts.forEach(function(post) { %>
+            <div class="post-card" style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                
+                <% if (post.image) { %>
+                    <img src="<%= post.image %>" style="width: 100%; height: 200px; object-fit: cover;">
+                <% } else { %>
+                    <div style="height: 200px; background: #eee; display: flex; align-items: center; justify-content: center; color: #aaa;">No Image</div>
+                <% } %>
+
+                <div class="post-content" style="padding: 15px;">
+                    <h3 style="margin: 0 0 10px 0;"><%= post.bird %></h3>
+                    <p style="font-size: 0.9em; color: #666;">
+                        <strong>📍</strong> <%= post.location %><br>
+                        <strong>👤</strong> <%= post.username %><br>
+                        <strong>📅</strong> <%= post.date %>
+                    </p>
+                    <p style="font-style: italic;">"<%= post.description %>"</p>
+                    
+                    <% if (typeof currentUser !== 'undefined' && currentUser && (currentUser.username === post.username || currentUser.isAdmin)) { %>
+                        <div style="margin-top: 10px; border-top: 1px solid #eee; padding-top: 10px;">
+                            <a href="/edit/<%= post._id %>" style="background: #f39c12; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; margin-right: 5px;">✏️ Edit</a>
+                            <a href="/delete/<%= post._id %>" onclick="return confirm('Are you sure you want to delete this post?')" style="background: #e74c3c; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px;">🗑️ Delete</a>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
